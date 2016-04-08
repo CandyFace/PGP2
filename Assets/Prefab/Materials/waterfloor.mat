@@ -7,11 +7,12 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: waterfloor
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_Shader: {fileID: 4800000, guid: 72adad0d11dff0140af5dbc89a001f5d, type: 3}
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Transparent
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -19,8 +20,8 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: a56c57d5be1b01d4fb018e7d4524041a, type: 3}
+          m_Scale: {x: 10, y: 10}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -55,7 +56,7 @@ Material:
           name: _EmissionMap
         second:
           m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
+          m_Scale: {x: 10, y: 10}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -82,7 +83,7 @@ Material:
         first:
           name: _Fresnel
         second:
-          m_Texture: {fileID: 2800000, guid: ab97f9ab7c2ce724ebc9446060a819a4, type: 3}
+          m_Texture: {fileID: 2800000, guid: a56c57d5be1b01d4fb018e7d4524041a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -128,7 +129,7 @@ Material:
       data:
         first:
           name: _DstBlend
-        second: 0
+        second: 10
       data:
         first:
           name: _Cutoff
@@ -140,7 +141,7 @@ Material:
       data:
         first:
           name: _ZWrite
-        second: 1
+        second: 0
       data:
         first:
           name: _Glossiness
@@ -164,7 +165,7 @@ Material:
       data:
         first:
           name: _Mode
-        second: 0
+        second: 3
       data:
         first:
           name: _Metallic
@@ -172,36 +173,88 @@ Material:
       data:
         first:
           name: _WaveScale
-        second: 0.063
+        second: 0.036
       data:
         first:
           name: _ReflDistort
-        second: 0.44
+        second: 0.5
       data:
         first:
           name: _RefrDistort
-        second: 0.4
+        second: 0.64
       data:
         first:
           name: _Threshold
-        second: 0
+        second: 0.24
       data:
         first:
           name: _Alpha
-        second: 1
+        second: 0.239
       data:
         first:
           name: _FoamStrength
-        second: 1.5
+        second: 2.87
+      data:
+        first:
+          name: _Speed
+        second: 0.2
+      data:
+        first:
+          name: _HighlightThresholdMax
+        second: 0.5
+      data:
+        first:
+          name: _Intensity
+        second: 3
+      data:
+        first:
+          name: _SpeedX
+        second: 0.3
+      data:
+        first:
+          name: _SpeedY
+        second: 0.3
+      data:
+        first:
+          name: _Frequency
+        second: 4
+      data:
+        first:
+          name: _Angle
+        second: 7
+      data:
+        first:
+          name: _Delta
+        second: 20
+      data:
+        first:
+          name: _Intence
+        second: 400
+      data:
+        first:
+          name: _Emboss
+        second: 0.3
+      data:
+        first:
+          name: _HeightScale
+        second: 0.14
+      data:
+        first:
+          name: _NoiseScale
+        second: 0.04
+      data:
+        first:
+          name: _WaveSpeed
+        second: 2.5
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0.1397059, g: 0.75081134, b: 1, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _Color
-        second: {r: 0.35294116, g: 0.8393508, b: 1, a: 1}
+        second: {r: 0.23399997, g: 0.416, b: 1, a: 1}
       data:
         first:
           name: _RefrColor
@@ -213,11 +266,11 @@ Material:
       data:
         first:
           name: _HorizonColor
-        second: {r: 0.172, g: 0.463, b: 0.435, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _Color1
-        second: {r: 0.10196079, g: 0.3019608, b: 0.7019608, a: 1}
+        second: {r: 0.20162313, g: 0.09558821, b: 1, a: 1}
       data:
         first:
           name: _Color2
@@ -233,4 +286,12 @@ Material:
       data:
         first:
           name: _FoamColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _RegularColor
+        second: {r: 0.22637326, g: 0.259, b: 1, a: 1}
+      data:
+        first:
+          name: _HighlightColor
         second: {r: 1, g: 1, b: 1, a: 1}
