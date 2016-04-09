@@ -1,133 +1,94 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class playerMovement : MonoBehaviour
-{
+// -----------------------
+// Add to the moveable object which is controlled by the player.
+// -----------------------
 
-		public float horizontalSpeed;
-		public float verticalSpeed;
-		public float jumpStrength;
-		public float moveX;
-		public float moveZ;
-		public float posX;
-		public float posZ;
-		
-		public bool ground = false;
-		bool dropping = true;
-		float gravity;
-		
-		bool hitWall = false;
-		
-		void Start ()
-		{
-//				//maxY = 0;
-//				posX = 0;
-//				posZ = 0;
-		
-		}
+public class PlayerMovement : MonoBehaviour {
 
-		//void Movement(float h, float v)
-		void Movement ()
-		{
-				
-				posX = transform.position.x;
-				posZ = transform.position.z;
-			
-				moveX = Input.GetAxisRaw ("Horizontal");
-				moveZ = Input.GetAxisRaw ("Vertical");
-				gravity = GetComponent<Rigidbody>().velocity.y;
-				GetComponent<Rigidbody>().velocity = new Vector3 (moveX * horizontalSpeed, gravity, moveZ * verticalSpeed);
-				
+	// Player movement. Attach it to the player object.
 
+	//	public Vector3 velocityShow;
+	//	public float yDifShow;
+
+	public float sprintMultiplier = 2;
+
+	public Vector3 oldPos = new Vector3 (0,0,0);
+	public float speedOriginal = 5f;
+	public float speed = 5f;
+	private float allowedFallSpeed = -0.04f;
+	private Rigidbody rb;
+	private MouseLook ml;
+	private Vector3 moveVector;
+
+	// ---- Start Menu Variables ----
+	public float xStartRotation = 275.0f; // Change this Value in the inspector while testing.
+
+	private float threshold = 0.7f;
+	private Vector3 startRot;
+
+	// ------------------------------
+
+	void Start () {
+		this.gameObject.layer = 2;
+		startRot = new Vector3(xStartRotation, 0.0f, 0.0f);
+		transform.rotation = Quaternion.Euler(startRot);
+		ml = GameObject.Find("Eyes").GetComponent<MouseLook>();
+		rb = GetComponent<Rigidbody>();
+		speed = speedOriginal;
 	}
-	
-	void FixedUpdate ()
-		{
-				Movement ();
-		}
-		
-		void Jumping ()
-		{
-		
-		Debug.Log ("You Jumped");
-		
-		//old jump method, not good for friction, might work in other situations..
-		//rigidbody.AddForce (Vector3.up * jumpStrength); //Add force on y axis
-		
-		GetComponent<Rigidbody>().velocity += new Vector3(0, jumpStrength,0);
-		}
-		
-		void Dropping ()
-		{
-				Debug.Log ("You are dropping");
-		
-				GetComponent<Rigidbody>().AddForce (Vector3.down * 20);
-		}
-				
-		void Update ()
-		{
-				//Debug.Log (ground);
-					
-				if (Input.GetButtonDown ("Jump") && ground == true && GetComponent<Rigidbody>().velocity.y <= -0.0) {
-						Jumping ();
-						ground = false;
-				} 
 
-//				Will check the position of the object in Y axis
-//				if (transform.position.x >= posX && transform.position.z >= posZ) {
-//						posX = transform.position.x;
-//						posZ = transform.position.z;
-//				}
+	void Update () {
 
-				
-				if (!ground && GetComponent<Rigidbody>().velocity.y < -0.0001) {
+		//if (Input.GetKeyDown (KeyCode.Escape))
+		//	Application.Quit ();
 
-						dropping = true;
-						Dropping ();
-							
-				}
+		controlFall ();
+		sprintButton ();
 
+		//Rotating with the camera
+		rb.transform.rotation = Quaternion.Euler(0f, ml.CurrentYRotation, 0f);
+
+		//Walking the direction, of the camera
+		moveVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+		rb.transform.Translate(moveVector * speed * Time.deltaTime);
+
+
+		//--------- START MENU SETTINGS --------
+		// Push forward to get up.
+
+		//		velocityShow = GetComponent<Rigidbody> ().velocity;
+		//-------------------------------------
+	}
+
+	public float GetPlayerSpeed()
+	{
+		return speed;
+	}
+
+	public void SetPlayerSpeed(float x)
+	{
+		speedOriginal = x;
+	}
+
+	void controlFall()
+	{
+		float yDif = transform.position.y - oldPos.y;
+
+		if (yDif < allowedFallSpeed) {
+			speed = speedOriginal * 0.5f;
+		} 
+		else {
+			speed = speedOriginal;
 		}
 
-		void OnCollisionEnter (Collision col)
-		{
-		if (col.gameObject.tag == "World" || col.gameObject.tag == "Platforms") {
-						ground = true;
-						dropping = false;
-						Debug.Log ("You are on ground");
-				}
-				
-				if(col.gameObject.tag == "Platforms")
-				{
-					hitWall = true;
-				}
-				
-		}
-		
-		void OnCollisionStay (Collision other)
-		{
-			if(other.gameObject.tag == "World")
-				ground = true;
-				dropping = false;
-		
-		}
-		
-		void OnCollisionExit (Collision platforms)
-		{
-		
-			if(platforms.gameObject.tag == "Platforms" && GetComponent<Rigidbody>().velocity.y < -0.1)
-				hitWall = !hitWall;
-				ground = false;
-				dropping = true;
-		}
-		
-	
-	
-	
-				
-				
-		
-			
-				
-		
+		oldPos = transform.position;
+	}
+	void sprintButton()
+	{
+		if (Input.GetKey (KeyCode.Space))
+			speed = speedOriginal * sprintMultiplier;
+	}
+
 }
