@@ -47528,8 +47528,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprintMultiplier: 2
+  oldPos: {x: 0, y: 0, z: 0}
+  speedOriginal: 5
+  speed: 5
   xStartRotation: 275
-  hasRisen: 0
 --- !u!23 &1828554774
 MeshRenderer:
   m_ObjectHideFlags: 0
