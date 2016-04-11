@@ -6,6 +6,7 @@ Shader "Custom/IntersectionHighlight_Shader"
     {
     	_MainTex ("Foreground Texture", 2D) = "white" {}
     	_SecondTex("Second Texture", 2D) = "white" {}
+    	//_ThirdTex("Third Texture", 2D) = "white" {}
         _RegularColor("Background color", Color) = (1, 1, 1, .5) //Color when not intersecting
         _HighlightColor("Highlight Color", Color) = (1, 1, 1, .5) //Color when intersecting
         _HighlightThresholdMax("Highlight Threshold Max", Float) = 1 //Max difference for intersections
@@ -13,6 +14,7 @@ Shader "Custom/IntersectionHighlight_Shader"
         _MinPulSize("Min Pulsation size", Range(0,1)) = 0.5
         _Cutoff ("Alpha Cutoff", Range(0,1)) = 0.5
         _CutoffTwo ("Alpha Cutoff tex2", Range(0,1)) = 0.5
+       // _FoamStrength ("Foam strength", Range (0, 10.0)) = 1.0
     }
     SubShader
     {
@@ -38,19 +40,26 @@ Shader "Custom/IntersectionHighlight_Shader"
             uniform float _HighlightThresholdMax;
             half _PulFreq;
             half _MinPulSize;
+
+           // uniform sampler2D _ThirdTex;
+           // float4 _ThirdTex_ST;
+           // uniform float _FoamStrength;
+
  
             struct v2f
             {
                 float4 pos : SV_POSITION;
                 float4 projPos : TEXCOORD1; //Screen position of pos
+                //float2 uv : TEXCOORD0;
             };
  
             v2f vert(appdata_base v)
             {
+            	float4 wpos = mul (_Object2World, v.vertex);
                 v2f o;
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
                 o.projPos = ComputeScreenPos(o.pos);
- 
+ 				//o.uv = 7.0f * wpos.xz + 0.05 * float2(_SinTime.w, _SinTime.w);
                 return o;
             }
  
@@ -59,14 +68,17 @@ Shader "Custom/IntersectionHighlight_Shader"
                 float4 finalColor = _RegularColor;
  
                 //Get the distance to the camera from the depth buffer for this point
-                float sceneZ = LinearEyeDepth (UNITY_SAMPLE_DEPTH(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos))));
+                float sceneZ = LinearEyeDepth (tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos)));
                 float partZ = i.projPos.z;
- 
+
+               // float intensityFactor = 1 - saturate((sceneZ - partZ) / _FoamStrength);   
+
                 //If the two are similar, then there is an object intersecting with our object
                 float diff = (abs(sceneZ - partZ)) /
                     _HighlightThresholdMax;
 
- 
+ 				//half4 foamtex = 1 - tex2D(_ThirdTex, float2(intensityFactor - _Time.y*0.2, 0));
+ 				//half3 foamColor = tex2D(_ThirdTex, i.uv).rgb;
                 if(diff <= 1)
                 {
                 	half posSin = 0.5 * sin(_Time.x*_PulFreq) + 0.5;
@@ -79,7 +91,10 @@ Shader "Custom/IntersectionHighlight_Shader"
                 c.g = finalColor.g;
                 c.b = finalColor.b;
                 c.a = finalColor.a;
+
+                //c.rgb += foamtex * intensityFactor * foamColor;
  
+                //return c;
                 return c;
             }
  

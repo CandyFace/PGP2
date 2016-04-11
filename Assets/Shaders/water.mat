@@ -152,9 +152,23 @@ Material:
         first:
           name: _SecondTex
         second:
-          m_Texture: {fileID: 2800000, guid: 15009afef90804ac480719f8828e9362, type: 3}
+          m_Texture: {fileID: 2800000, guid: 53a87355447b64f6ea07b7ae6b1a438f, type: 3}
           m_Scale: {x: 2, y: 2}
           m_Offset: {x: 0.1, y: 0.4}
+      data:
+        first:
+          name: _Third
+        second:
+          m_Texture: {fileID: 2800000, guid: 834b6ab9d406c42c98f19b04bd4728b1, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ThirdTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 834b6ab9d406c42c98f19b04bd4728b1, type: 3}
+          m_Scale: {x: 5, y: 5}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -235,7 +249,7 @@ Material:
       data:
         first:
           name: _FoamStrength
-        second: 0.939
+        second: 0.94
       data:
         first:
           name: _ReflDistort
@@ -259,7 +273,7 @@ Material:
       data:
         first:
           name: _MinPulSize
-        second: 0.121
+        second: 1
       data:
         first:
           name: _Refractivity
@@ -320,7 +334,7 @@ Material:
       data:
         first:
           name: _RegularColor
-        second: {r: 0.29404312, g: 0.21085638, b: 0.7352941, a: 1}
+        second: {r: 0.15862082, g: 0, b: 1, a: 1}
       data:
         first:
           name: _HighlightColor

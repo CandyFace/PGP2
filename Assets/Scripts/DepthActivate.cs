@@ -9,4 +9,9 @@ public class DepthActivate : MonoBehaviour {
 		GetComponent<Camera>();
 		GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
 	}
+
+//	public Material mat;
+//	void OnRenderImage(RenderTexture src, RenderTexture dest) {
+//		Graphics.Blit(src, dest, mat);
+//	}
 }
