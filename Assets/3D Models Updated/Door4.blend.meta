@@ -1,20 +1,26 @@
 fileFormatVersion: 2
-guid: 4f6315138a705b54aa1515eeba681248
-timeCreated: 1446038665
+guid: aabe3567a88e14698836abd3b6b0f38e
+timeCreated: 1460461708
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Dummy001
+    100000: Door
     100002: //RootNode
-    100004: PM3D_Cube3D_2
-    400000: Dummy001
+    100004: Inner_door_cylinder
+    100006: Outer_Door_cylinder
+    400000: Door
     400002: //RootNode
-    400004: PM3D_Cube3D_2
-    4300000: PM3D_Cube3D_2
-    7400000: Take 001
+    400004: Inner_door_cylinder
+    400006: Outer_Door_cylinder
+    4300000: Door
+    4300002: Inner_door_cylinder
+    4300004: Outer_Door_cylinder
+    7400000: Default Take
     9500000: //RootNode
-    13700000: PM3D_Cube3D_2
+    13700000: Door
+    13700002: Inner_door_cylinder
+    13700004: Outer_Door_cylinder
   materials:
     importMaterials: 1
     materialName: 0
@@ -44,7 +50,7 @@ ModelImporter:
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -55,9 +61,9 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
-    tangentImportMode: 4
+    normalSmoothAngle: 1
+    normalImportMode: 1
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
