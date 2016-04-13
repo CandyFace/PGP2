@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 0
+  m_CurrentQuality: 2
   m_QualitySettings:
   - serializedVersion: 2
     name: Fastest
@@ -47,7 +47,7 @@ QualitySettings:
     textureQuality: 0
     anisotropicTextures: 0
     antiAliasing: 0
-    softParticles: 0
+    softParticles: 1
     softVegetation: 0
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
@@ -62,7 +62,7 @@ QualitySettings:
     name: Simple
     pixelLightCount: 1
     shadows: 1
-    shadowResolution: 0
+    shadowResolution: 1
     shadowProjection: 1
     shadowCascades: 1
     shadowDistance: 20
@@ -73,10 +73,10 @@ QualitySettings:
     textureQuality: 0
     anisotropicTextures: 1
     antiAliasing: 0
-    softParticles: 0
+    softParticles: 1
     softVegetation: 0
     realtimeReflectionProbes: 0
-    billboardsFaceCameraPosition: 0
+    billboardsFaceCameraPosition: 1
     vSyncCount: 0
     lodBias: 0.7
     maximumLODLevel: 0
@@ -162,4 +162,6 @@ QualitySettings:
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality: {}
+  m_PerPlatformDefaultQuality:
+    Standalone: 0
+    Web: 0
