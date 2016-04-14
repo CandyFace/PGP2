@@ -212,7 +212,7 @@ Material:
       data:
         first:
           name: _TintColor
-        second: {r: 0, g: 0.011764706, b: 0.03137255, a: 0.7019608}
+        second: {r: 0, g: 0.011764706, b: 0.03137255, a: 0.266}
       data:
         first:
           name: _RimColor

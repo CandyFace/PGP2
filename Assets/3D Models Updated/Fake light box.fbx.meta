@@ -1,26 +1,17 @@
 fileFormatVersion: 2
-guid: aabe3567a88e14698836abd3b6b0f38e
-timeCreated: 1460461708
+guid: 6cfa32a987fa7432db6dffa14dfdbfed
+timeCreated: 1460670813
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Door
-    100002: //RootNode
-    100004: Inner_door_cylinder
-    100006: Outer_Door_cylinder
-    400000: Door
-    400002: //RootNode
-    400004: Inner_door_cylinder
-    400006: Outer_Door_cylinder
-    4300000: Door
-    4300002: Inner_door_cylinder
-    4300004: Outer_Door_cylinder
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cube
     7400000: Default Take
     9500000: //RootNode
-    13700000: Door
-    13700002: Inner_door_cylinder
-    13700004: Outer_Door_cylinder
   materials:
     importMaterials: 1
     materialName: 0
@@ -45,7 +36,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -61,10 +52,10 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 1
-    normalImportMode: 1
-    tangentImportMode: 3
-  importAnimation: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 0
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []

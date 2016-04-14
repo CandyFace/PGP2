@@ -188,16 +188,16 @@ Material:
         second: 1.9
       data:
         first:
+          name: _Glossiness
+        second: 0.5
+      data:
+        first:
           name: _Parallax
         second: 0.02
       data:
         first:
           name: _ZWrite
         second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -224,12 +224,24 @@ Material:
         second: 0
       data:
         first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
           name: _Speed
         second: 3.11
       data:
         first:
-          name: _InvFade
+          name: _PulFreq
         second: 1
+      data:
+        first:
+          name: _MinPulSize
+        second: 1
+      data:
+        first:
+          name: _CutoffTwo
+        second: 0.551
       data:
         first:
           name: _HighlightThresholdMax
@@ -268,14 +280,6 @@ Material:
         second: 0.025
       data:
         first:
-          name: _PulFreq
-        second: 1
-      data:
-        first:
-          name: _MinPulSize
-        second: 1
-      data:
-        first:
           name: _Refractivity
         second: 39.4
       data:
@@ -310,10 +314,6 @@ Material:
         first:
           name: _GerstnerIntensity
         second: 1
-      data:
-        first:
-          name: _CutoffTwo
-        second: 0.551
     m_Colors:
       data:
         first:
@@ -329,12 +329,16 @@ Material:
         second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
       data:
         first:
+          name: _TintColor
+        second: {r: 0.11724187, g: 0, b: 1, a: 1}
+      data:
+        first:
           name: _Foam
         second: {r: 0.5, g: 0.375, b: 0, a: 0}
       data:
         first:
           name: _RegularColor
-        second: {r: 0.15862082, g: 0, b: 1, a: 1}
+        second: {r: 0.15862082, g: 0, b: 1, a: 0.428}
       data:
         first:
           name: _HighlightColor
@@ -371,10 +375,6 @@ Material:
         first:
           name: _HorizonColor
         second: {r: 0.172, g: 0.463, b: 0.435, a: 1}
-      data:
-        first:
-          name: _TintColor
-        second: {r: 0.11724187, g: 0, b: 1, a: 1}
       data:
         first:
           name: _WorldLightDir
