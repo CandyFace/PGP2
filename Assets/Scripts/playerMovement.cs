@@ -9,34 +9,30 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Player movement. Attach it to the player object.
 
-	//	public Vector3 velocityShow;
-	//	public float yDifShow;
-
 	public float sprintMultiplier = 2;
-
 	public Vector3 oldPos = new Vector3 (0,0,0);
-	public float speedOriginal = 5f;
 	public float speed = 5f;
+	public float jumpStrength = 5f;
+
+
+	private Vector3 playerBoundary;
 	private float allowedFallSpeed = -0.04f;
 	private Rigidbody rb;
 	private MouseLook ml;
 	private Vector3 moveVector;
-
-	// ---- Start Menu Variables ----
-	public float xStartRotation = 275.0f; // Change this Value in the inspector while testing.
-
-	private float threshold = 0.7f;
+	private float speedOriginal = 5f;
 	private Vector3 startRot;
-
-	// ------------------------------
+	private float distToGround;
+	private Collider col;
 
 	void Start () {
-		this.gameObject.layer = 2;
-		startRot = new Vector3(xStartRotation, 0.0f, 0.0f);
+		startRot = new Vector3(0.0f, 0.0f, 0.0f);
 		transform.rotation = Quaternion.Euler(startRot);
 		ml = GameObject.Find("Eyes").GetComponent<MouseLook>();
 		rb = GetComponent<Rigidbody>();
 		speed = speedOriginal;
+		col = GetComponent<CapsuleCollider> ();
+		distToGround = col.bounds.extents.y;
 	}
 
 	void Update () {
@@ -46,6 +42,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		controlFall ();
 		sprintButton ();
+		JumpFeature ();
 
 		//Rotating with the camera
 		rb.transform.rotation = Quaternion.Euler(0f, ml.CurrentYRotation, 0f);
@@ -54,12 +51,6 @@ public class PlayerMovement : MonoBehaviour {
 		moveVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 		rb.transform.Translate(moveVector * speed * Time.deltaTime);
 
-
-		//--------- START MENU SETTINGS --------
-		// Push forward to get up.
-
-		//		velocityShow = GetComponent<Rigidbody> ().velocity;
-		//-------------------------------------
 	}
 
 	public float GetPlayerSpeed()
@@ -82,13 +73,26 @@ public class PlayerMovement : MonoBehaviour {
 		else {
 			speed = speedOriginal;
 		}
-
 		oldPos = transform.position;
 	}
 	void sprintButton()
 	{
-		if (Input.GetKey (KeyCode.Space))
+		if (Input.GetKey (KeyCode.LeftShift))
 			speed = speedOriginal * sprintMultiplier;
+	}
+
+	void JumpFeature()
+	{
+		if (Input.GetKey (KeyCode.Space) && IsGrounded()) {
+
+			GetComponent<Rigidbody> ().velocity = new Vector3(0, jumpStrength, 0);
+		}
+		
+	}
+
+	bool IsGrounded()
+	{
+		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
 	}
 
 }

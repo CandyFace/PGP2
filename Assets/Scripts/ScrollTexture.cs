@@ -18,19 +18,19 @@ public class ScrollTexture : MonoBehaviour
 	public bool UseAnimation;
 	public bool enableWaves;
 
-	private Renderer renderer;
+	private Renderer rend;
 	private float animateCutoff1;
 	private float animateCutoff2;
 
 	void Start()
 	{
 		//get the renderr component
-		renderer = GetComponent<Renderer> ();
+		rend = GetComponent<Renderer> ();
 	}
 	void Update()
 	{
 		//Make a material so we dan get the Texture.
-		Material mat = GetComponent<Renderer> ().material;
+		Material mat = rend.material;
 
 
 		//Enable if you want fancy waves, making the texture move up and down.
@@ -45,24 +45,33 @@ public class ScrollTexture : MonoBehaviour
 			scaleX2 = Mathf.Cos (Time.time) * 0.2f + waveFreq;
 			scaleX = Mathf.Cos (Time.time) * 0.2f + waveFreq2;
 			mat.mainTextureScale = new Vector2 (scaleX, scaleY);
-			renderer.material.SetTextureScale ("_Tex2", new Vector2 (scaleX2, scaleY2));
+
+			if (rend.material.HasProperty ("_Tex2")) {
+				rend.material.SetTextureScale ("_Tex2", new Vector2 (scaleX2, scaleY2));
+			}
 		} 		
 			
 		//If enabled, cutoff alpha animation will start.
 		if (UseAnimation == true) {
 			animateCutoff1 = Mathf.PingPong (Time.time * 0.4f, 0.7f) + 0.7f;
 			animateCutoff2 = Mathf.PingPong (Time.time * 0.4f, 0.9f) + 0.7f;
-			renderer.material.SetFloat ("_Cutoff", animateCutoff1);
-			renderer.material.SetFloat ("_CutoffTwo", animateCutoff2);
+			rend.material.SetFloat ("_Cutoff", animateCutoff1);
+			rend.material.SetFloat ("_CutoffTwo", animateCutoff2);
 		}
 
 		//We don't always want a random offset value.
 		if (randomOffset == true && animateCutoff1 >= 1) {
 			mat.mainTextureOffset = new Vector2 (Random.value * Time.time, Random.value * Time.time);
-			renderer.material.SetTextureOffset ("_Tex2", new Vector2 (Random.value * Time.time, Random.value * Time.time));
+
+			if(rend.material.HasProperty("_Tex2")){
+				rend.material.SetTextureOffset ("_Tex2", new Vector2 (Random.value * Time.time, Random.value * Time.time));
+			}
 		} else if (randomOffset == false) {
 			mat.mainTextureOffset = new Vector2(offsetX * Time.time, offsetY * Time.time);
-			renderer.material.SetTextureOffset ("_Tex2", new Vector2(offsetX2 * Time.time, offsetY2 * Time.time));
+
+			if (rend.material.HasProperty ("_Tex2")) {
+				rend.material.SetTextureOffset ("_Tex2", new Vector2 (offsetX2 * Time.time, offsetY2 * Time.time));
+			}
 		}
 	}
 }
