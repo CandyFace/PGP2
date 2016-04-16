@@ -291,21 +291,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0.107
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._Glossiness
-    path: Door
-    classID: 137
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: 0.198
         inSlope: 0
         outSlope: 0
@@ -564,12 +549,6 @@ AnimationClip:
       script: {fileID: 0}
       classID: 4
       customType: 14
-      isPPtrCurve: 0
-    - path: 718797587
-      attribute: 2211735517
-      script: {fileID: 0}
-      classID: 137
-      customType: 22
       isPPtrCurve: 0
     - path: 927194726
       attribute: 2211735517
@@ -1019,21 +998,6 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: material._Glossiness
     path: Inner_door_cylinder
-    classID: 137
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0.107
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._Glossiness
-    path: Door
     classID: 137
     script: {fileID: 0}
   - curve:
