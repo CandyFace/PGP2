@@ -10,7 +10,7 @@ Shader "Custom/IntersectionHighlight_Shader"
         _RegularColor("Background color", Color) = (1, 1, 1, .5) //Color when not intersecting
         _HighlightColor("Highlight Color", Color) = (1, 1, 1, .5) //Color when intersecting
         _HighlightThresholdMax("Highlight Threshold Max", Float) = 1 //Max difference for intersections
-        _PulFreq("Pulsating frequency", Range(1,40)) = 30
+        _PulFreq("Pulsating frequency", Range(0,40)) = 30
         _MinPulSize("Min Pulsation size", Range(0,1)) = 0.5
         _Cutoff ("Alpha Cutoff", Range(0,1)) = 0.5
         _CutoffTwo ("Alpha Cutoff tex2", Range(0,1)) = 0.5
@@ -33,6 +33,7 @@ Shader "Custom/IntersectionHighlight_Shader"
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
+            #pragma multi_compile INTERSECTIONDIFF
 
             uniform sampler2D _CameraDepthTexture; //Depth Texture
             uniform float4 _RegularColor;
@@ -79,13 +80,15 @@ Shader "Custom/IntersectionHighlight_Shader"
 
  				//half4 foamtex = 1 - tex2D(_ThirdTex, float2(intensityFactor - _Time.y*0.2, 0));
  				//half3 foamColor = tex2D(_ThirdTex, i.uv).rgb;
-                if(diff <= 1)
-                {
-                	half posSin = 0.5 * sin(_Time.x*_PulFreq) + 0.5;
-                	half pulseMultiplier = posSin * (1 - _MinPulSize) + _MinPulSize;
+
+ 				half posSin = 0.5 * sin(_Time.x*_PulFreq) + 0.5;
+                half pulseMultiplier = posSin * (1 - _MinPulSize) + _MinPulSize;
+
+ 				if(diff <= 1){
                     finalColor = _HighlightColor * pulseMultiplier;
-                }
- 
+                    }
+
+
                 half4 c;
                 c.r = finalColor.r;
                 c.g = finalColor.g;
@@ -117,15 +120,19 @@ Shader "Custom/IntersectionHighlight_Shader"
             #include "UnityCG.cginc" 
  
             uniform sampler2D _MainTex;
+            uniform sampler2D _SecondTex;
             float4 _MainTex_ST;
+            float4 _SecondTex_ST;
             uniform sampler2D _CameraDepthTexture; //Depth Texture
             uniform float _Cutoff;
+            uniform float _CutoffTwo;
  
             struct v2f
             {
                 float4 pos : SV_POSITION;
                 float4 projPos : TEXCOORD1; //Screen position of pos
                 float2 uv : TEXCOORD0;
+                float2 uv2 : TEXCOORD2;
             };
  
             v2f vert(appdata_base v)
@@ -134,6 +141,7 @@ Shader "Custom/IntersectionHighlight_Shader"
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
                 o.projPos = ComputeScreenPos(o.pos);
                 o.uv = TRANSFORM_TEX (v.texcoord, _MainTex);
+                o.uv2 = TRANSFORM_TEX(v.texcoord, _SecondTex);
  
                 return o;
             }
@@ -142,68 +150,15 @@ Shader "Custom/IntersectionHighlight_Shader"
             {
 
             	half4 tex = tex2D (_MainTex, i.uv);
+            	half4 tex2 = tex2D (_SecondTex, i.uv2);
 
-            if (tex.a < _Cutoff)
+            if (tex.a < _Cutoff && tex2.a < _CutoffTwo)
             // alpha value less than user-specified threshold?
             {
                discard; // yes: discard this fragment
             }
  
-                return tex;
-            }
- 
-            ENDCG
-        }
-
-         Pass {	
-         Cull Back // now render the front faces
-         ZWrite Off // don't write to depth buffer 
-            // in order not to occlude other objects
-         Blend SrcAlpha OneMinusSrcAlpha 
-            // blend based on the fragment's alpha value
-         
-         CGPROGRAM
- 
-         	#pragma exclude_renderers d3d11 xbox360
-            #pragma target 3.0
-            #pragma vertex vert
-            #pragma fragment frag
-            #include "UnityCG.cginc" 
- 
-            uniform sampler2D _SecondTex;
-            float4 _SecondTex_ST;
-            uniform sampler2D _CameraDepthTexture; //Depth Texture
-            uniform float _CutoffTwo;
- 
-            struct v2f
-            {
-                float4 pos : SV_POSITION;
-                float4 projPos : TEXCOORD1; //Screen position of pos
-                float2 uv : TEXCOORD0;
-            };
- 
-            v2f vert(appdata_base v)
-            {
-                v2f o;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
-                o.projPos = ComputeScreenPos(o.pos);
-                o.uv = TRANSFORM_TEX (v.texcoord, _SecondTex);
- 
-                return o;
-            }
- 
-            half4 frag(v2f i) : COLOR
-            {
-
-            	half4 tex = tex2D (_SecondTex, i.uv);
-
-            if (tex.a < _CutoffTwo)
-            // alpha value less than user-specified threshold?
-            {
-               discard; // yes: discard this fragment
-            }
- 
-                return tex;
+                return tex + tex2;
             }
  
             ENDCG

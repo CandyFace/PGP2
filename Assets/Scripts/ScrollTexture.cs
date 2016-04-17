@@ -22,16 +22,19 @@ public class ScrollTexture : MonoBehaviour
 	private float animateCutoff1;
 	private float animateCutoff2;
 
+	private Material mat;
+
 	void Start()
 	{
 		//get the renderr component
 		rend = GetComponent<Renderer> ();
+
+		//Make a material so we dan get the Texture.
+		mat = rend.material;
+
 	}
 	void Update()
 	{
-		//Make a material so we dan get the Texture.
-		Material mat = rend.material;
-
 
 		//Enable if you want fancy waves, making the texture move up and down.
 		if (enableWaves) {
@@ -49,7 +52,10 @@ public class ScrollTexture : MonoBehaviour
 			if (rend.material.HasProperty ("_Tex2")) {
 				rend.material.SetTextureScale ("_Tex2", new Vector2 (scaleX2, scaleY2));
 			}
-		} 		
+			if (rend.material.HasProperty ("_SecondTex")) {
+				rend.material.SetTextureScale ("_SecondTex", new Vector2 (scaleX2, scaleY2));
+			}
+		} 	
 			
 		//If enabled, cutoff alpha animation will start.
 		if (UseAnimation == true) {
@@ -66,6 +72,11 @@ public class ScrollTexture : MonoBehaviour
 			if(rend.material.HasProperty("_Tex2")){
 				rend.material.SetTextureOffset ("_Tex2", new Vector2 (Random.value * Time.time, Random.value * Time.time));
 			}
+			if(rend.material.HasProperty("_SecondTex") && animateCutoff2 >= 1)
+			{
+				rend.material.SetTextureOffset ("_SecondTex", new Vector2 (Random.value * Time.time, Random.value * Time.time));
+			}
+
 		} else if (randomOffset == false) {
 			mat.mainTextureOffset = new Vector2(offsetX * Time.time, offsetY * Time.time);
 
