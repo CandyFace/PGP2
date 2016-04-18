@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if (Input.GetKey (KeyCode.Space) && IsGrounded()) {
 
-			GetComponent<Rigidbody> ().velocity = new Vector3(0, jumpStrength, 0);
+			rb.velocity = new Vector3(0, jumpStrength, 0);
 		}
 		
 	}
