@@ -14,3 +14,7 @@
 *.pidb
 *.booproj
 
+
+*.sublime-workspace
+
+*.sublime-project
