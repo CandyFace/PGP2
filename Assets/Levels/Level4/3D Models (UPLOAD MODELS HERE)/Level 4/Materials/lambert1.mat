@@ -38,42 +38,7 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Ramp
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ToonShade
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _ParallaxMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _lightingRamp
-        second:
-          m_Texture: {fileID: 2800000, guid: 874b414f47cce4a48a593a57a3247b3e, type: 3}
-          m_Scale: {x: 0, y: 0}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _diffuseMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _normalMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -128,24 +93,8 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Outline
-        second: 0.0154
-      data:
-        first:
           name: _Parallax
         second: 0.02
-      data:
-        first:
-          name: _specularPower
-        second: 1
-      data:
-        first:
-          name: _specularIntensity
-        second: 1
-      data:
-        first:
-          name: _specMapConstant
-        second: 0.25
       data:
         first:
           name: _ZWrite
@@ -153,7 +102,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -186,16 +135,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.63235295, g: 0.3383024, b: 0.023248255, a: 1}
-      data:
-        first:
-          name: _OutlineColor
-        second: {r: 0.559, g: 0.159, b: 0.009, a: 1}
-      data:
-        first:
-          name: _diffuseColor
-        second: {r: 0.6838235, g: 0.41438594, b: 0.12570286, a: 1}
-      data:
-        first:
-          name: _specularColor
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
