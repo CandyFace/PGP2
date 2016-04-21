@@ -45,6 +45,48 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _OcclusionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EmissionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailMask
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailAlbedoMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Tex2
+        second:
+          m_Texture: {fileID: 2800000, guid: 53a87355447b64f6ea07b7ae6b1a438f, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _SecondTex
         second:
           m_Texture: {fileID: 2800000, guid: 53a87355447b64f6ea07b7ae6b1a438f, type: 3}
@@ -88,48 +130,6 @@ Material:
       data:
         first:
           name: _RefractionTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Tex2
-        second:
-          m_Texture: {fileID: 2800000, guid: 53a87355447b64f6ea07b7ae6b1a438f, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _OcclusionMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _EmissionMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailMask
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailAlbedoMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -195,64 +195,8 @@ Material:
         second: 1.9
       data:
         first:
-          name: _Alpha
-        second: 0.808
-      data:
-        first:
           name: _Parallax
         second: 0.02
-      data:
-        first:
-          name: _PulsatingSpeed
-        second: 10
-      data:
-        first:
-          name: _PulsatingSize
-        second: 0.025
-      data:
-        first:
-          name: _Threshold
-        second: 0
-      data:
-        first:
-          name: _FoamStrength
-        second: 0.94
-      data:
-        first:
-          name: _WaveScale
-        second: 0.063
-      data:
-        first:
-          name: _ReflDistort
-        second: 0.44
-      data:
-        first:
-          name: _RefrDistort
-        second: 0.4
-      data:
-        first:
-          name: _PulFreq
-        second: 7.3
-      data:
-        first:
-          name: _MinPulSize
-        second: 1
-      data:
-        first:
-          name: _CutoffTwo
-        second: 0.336
-      data:
-        first:
-          name: _Speed
-        second: 3.11
-      data:
-        first:
-          name: _InvFade
-        second: 1
-      data:
-        first:
-          name: _HighlightThresholdMax
-        second: 0.3
       data:
         first:
           name: _ZWrite
@@ -285,6 +229,62 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _Speed
+        second: 3.11
+      data:
+        first:
+          name: _PulFreq
+        second: 7.3
+      data:
+        first:
+          name: _MinPulSize
+        second: 1
+      data:
+        first:
+          name: _CutoffTwo
+        second: 0.336
+      data:
+        first:
+          name: _Alpha
+        second: 0.808
+      data:
+        first:
+          name: _PulsatingSpeed
+        second: 10
+      data:
+        first:
+          name: _PulsatingSize
+        second: 0.025
+      data:
+        first:
+          name: _Threshold
+        second: 0
+      data:
+        first:
+          name: _FoamStrength
+        second: 0.94
+      data:
+        first:
+          name: _WaveScale
+        second: 0.063
+      data:
+        first:
+          name: _ReflDistort
+        second: 0.44
+      data:
+        first:
+          name: _RefrDistort
+        second: 0.4
+      data:
+        first:
+          name: _HighlightThresholdMax
+        second: 0.3
       data:
         first:
           name: _FresnelScale
@@ -340,6 +340,14 @@ Material:
         second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
       data:
         first:
+          name: _TintColor
+        second: {r: 0.11724187, g: 0, b: 1, a: 1}
+      data:
+        first:
+          name: _Foam
+        second: {r: 0.5, g: 0.375, b: 0, a: 0}
+      data:
+        first:
           name: _Color1
         second: {r: 0, g: 0.05, b: 0.1, a: 1}
       data:
@@ -364,10 +372,6 @@ Material:
         second: {r: 0.34, g: 0.85, b: 0.92, a: 1}
       data:
         first:
-          name: _Foam
-        second: {r: 0.5, g: 0.375, b: 0, a: 0}
-      data:
-        first:
           name: WaveSpeed
         second: {r: 19, g: 9, b: -16, a: -7}
       data:
@@ -376,12 +380,8 @@ Material:
         second: {r: 0.172, g: 0.463, b: 0.435, a: 1}
       data:
         first:
-          name: _TintColor
-        second: {r: 0.11724187, g: 0, b: 1, a: 1}
-      data:
-        first:
           name: _RegularColor
-        second: {r: 0.15686275, g: 0.766, b: 1, a: 0.42745098}
+        second: {r: 0.15686275, g: 0.359, b: 1, a: 0.42745098}
       data:
         first:
           name: _HighlightColor
